@@ -6,11 +6,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
+
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class VistaPrincipal extends JFrame {
 
@@ -61,12 +67,8 @@ public class VistaPrincipal extends JFrame {
 		
 		JLabel lblImagen = new JLabel("Imagen");
 		lblImagen.setBackground(Color.MAGENTA);
-		lblImagen.setBounds(30, 88, 377, 229);
+		lblImagen.setBounds(30, 88, 380, 159);
 		contentPane.add(lblImagen);
-		
-		JLabel lblIngreseElLfjdksajkl = new JLabel("Ingrese El lfjdksajkl");
-		lblIngreseElLfjdksajkl.setBounds(30, 331, 169, 21);
-		contentPane.add(lblIngreseElLfjdksajkl);
 		
 		JPanel panelCuestionarioParaCambiar = new JPanel();
 		panelCuestionarioParaCambiar.setBounds(448, 61, 398, 413);
@@ -75,5 +77,30 @@ public class VistaPrincipal extends JFrame {
 		JLabel lblNewLabel = new JLabel("Diagnostico para Celulares");
 		lblNewLabel.setBounds(26, 35, 367, 42);
 		contentPane.add(lblNewLabel);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(26, 293, 384, 173);
+		contentPane.add(panel);
+		
+		JLabel lblNewLabel1 = new JLabel("Indique su Problema: ");
+		lblNewLabel1.setBounds(28, 78, 200, 50);
+		panel.add(lblNewLabel1);	
+		
+		final JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Problema de Carga", "Problema con el Audio", "Problema con el Display", "Problemas de Apagado"}));
+		comboBox.setBounds(164, 92, 181, 22);
+		panel.add(comboBox);
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String problema = (String)comboBox.getSelectedItem();
+				if(problema == "Problema de Carga"){
+					//carga.setVisible(true);
+				}
+			}
+		});
+		btnAceptar.setBounds(164, 141, 97, 25);
+		
+		panel.add(btnAceptar);
 	}
 }
