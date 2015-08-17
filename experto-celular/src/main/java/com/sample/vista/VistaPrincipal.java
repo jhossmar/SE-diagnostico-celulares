@@ -13,6 +13,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,7 @@ import java.awt.event.ActionListener;
 public class VistaPrincipal extends JFrame {
 
 	private JPanel contentPane;
+	private JPanel panelCuestionarioParaCambiar;
 
 	/**
 	 * Launch the application.
@@ -70,7 +72,7 @@ public class VistaPrincipal extends JFrame {
 		lblImagen.setBounds(30, 88, 380, 159);
 		contentPane.add(lblImagen);
 		
-		JPanel panelCuestionarioParaCambiar = new JPanel();
+		panelCuestionarioParaCambiar = new JPanel();
 		panelCuestionarioParaCambiar.setBounds(448, 61, 398, 413);
 		contentPane.add(panelCuestionarioParaCambiar);
 		
@@ -90,17 +92,27 @@ public class VistaPrincipal extends JFrame {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Problema de Carga", "Problema con el Audio", "Problema con el Display", "Problemas de Apagado"}));
 		comboBox.setBounds(164, 92, 181, 22);
 		panel.add(comboBox);
+		final VistaPrincipal a = this;
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String problema = (String)comboBox.getSelectedItem();
 				if(problema == "Problema de Carga"){
 					//carga.setVisible(true);
+					a.setPanelCuestionario(new PanelProblemaAudio());
 				}
 			}
 		});
 		btnAceptar.setBounds(164, 141, 97, 25);
 		
 		panel.add(btnAceptar);
+	}
+	
+	public void setPanelCuestionario(PanelProblemaAudio panelNuevo) {
+		this.removeAll();
+		this.add(panelNuevo);
+		this.repaint();
+		
+		SwingUtilities.updateComponentTreeUI(this);
 	}
 }

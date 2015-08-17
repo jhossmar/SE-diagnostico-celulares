@@ -1,7 +1,9 @@
 package com.sample
  
 import com.sample.DroolsTest.Message;
-
+import com.sample.modelo.Problema;
+import com.sample.modelo.TipoEstado;
+import com.sample.modelo.Diagnostico;
  
 
  
@@ -21,3 +23,5 @@ rule "GoodBye"
     then
         System.out.println( myMessage );
 end
+
+

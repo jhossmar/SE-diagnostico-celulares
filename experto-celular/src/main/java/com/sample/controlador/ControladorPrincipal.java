@@ -9,7 +9,7 @@ public class ControladorPrincipal {
 	public static void main(String[] args) {
 		
 		Problema e  = new Problema(TipoEstado.AUDIO);
-		Diagnostico c = new Diagnostico(e);
+		
 		
 	}
 }
