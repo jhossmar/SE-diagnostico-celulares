@@ -1,0 +1,74 @@
+//created on: 04-ago-2015
+package rules
+
+import com.sample.modelo.Problema;
+import com.sample.modelo.TipoEstado;
+import com.sample.modelo.Diagnostico;
+import java.util.ArrayList;
+
+global com.sample.modelo.Diagnostico diagnostico
+global com.sample.vista.PanelProblemaAudio vista
+
+rule "regla inicial"
+	when
+		Problema(estado == TipoEstado.REALIZA_LLAMADA)
+	then
+		System.out.println("hola beimar");
+		vista.cambiarSugerencia("Debes reparar todo el celular");
+		//insert (new Problema(TipoEstado.NOS_ESCUCHAN));
+		//insert (new Problema(TipoEstado.NO_ESCUCHAMOS_NADA));
+end
+
+rule "verificacion no escuchamos"
+	when
+		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
+		Problema(estado == TipoEstado.NOS_ESCUCHAN) 
+		//and 
+		//Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)
+	then
+		System.out.println("las tres condiciones juntas");
+		//insert (new Problema(TipoEstado.COMPONENTES_PASIVOS_BUEN_ESTADO));
+end
+
+rule "verificacion componentes pasivos"
+	when
+		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
+		Problema(estado == TipoEstado.NOS_ESCUCHAN) and 
+		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA) and
+		Problema(estado == TipoEstado.COMPONENTES_PASIVOS_BUEN_ESTADO)
+	then
+		
+end
+
+rule "verificar no nos escuchan"
+	when
+		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
+		Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) and
+		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)
+	then
+		
+end
+
+rule "verificar no se escucha con audifonos"
+	when
+		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
+		Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) and
+		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA) and
+		Problema(estado == TipoEstado.NO_SE_ESCUCHA_CON_AUDIFONOS)
+	then
+		
+end
+
+
+rule "verificar conectores estan limpios"
+	
+	when
+		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
+		Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) and
+		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA) and
+		Problema(estado == TipoEstado.NO_SE_ESCUCHA_CON_AUDIFONOS) and
+		Problema(estado == TipoEstado.CONECTORES_LIMPIOS)
+	then
+		System.out.println("esto es un problema de carga");
+		
+end

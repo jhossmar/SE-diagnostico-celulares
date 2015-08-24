@@ -8,20 +8,60 @@ import javax.swing.JOptionPane;
 import com.sample.modelo.Diagnostico;
 import com.sample.modelo.Problema;
 import com.sample.modelo.TipoEstado;
+import com.sample.vista.PanelProblemaAudio;
 import com.sample.vista.VistaPrincipal;
+
 
 public class ControladorPrincipal implements ActionListener {
   Diagnostico diagnostico = null; //modelo
-  VistaPrincipal vista = null;
+   
+   VistaPrincipal vistaPrincipal;
+	ConfiguracionDrools drools;
 	
   public ControladorPrincipal(Diagnostico diag, VistaPrincipal vista) {
      this.diagnostico= diag;
-     this.vista= vista;
+     this.vistaPrincipal= vista;
      actionListener(this); // escuchador para la vista
      
   }
+
+    //constructor beimar
+   public ControladorPrincipal(VistaPrincipal vistaPrincipal) {
+		this.vistaPrincipal = vistaPrincipal;
+		this.vistaPrincipal.agregarEvento(this);
+		this.drools = new ConfiguracionDrools();
+	}
+
+
+   public void actionPerformed(ActionEvent arg0) {
+		
+		if(arg0.getSource() == vistaPrincipal.btnAceptar) {
+			String problema = (String) vistaPrincipal.comboBox.getSelectedItem();
+			
+			/**
+			 * Controla que se cambie el panel de problema de Audio
+			 */
+			if (problema == "Problema con el Audio") {
+				vistaPrincipal.cambiarPanel("Audio");
+				ControladorProblemaAudio controlador = new ControladorProblemaAudio(drools, vistaPrincipal.panelAudio);
+			}
+		}
+		
+	}
+
+
+
+
+}// fin de la clase
+
+
+
+
+
+
+
 	
-	
+	/**
 	private void actionListener(ControladorPrincipal controladorPrincipal) {
 	
 		vista.btnIniciarDiagnostico.setActionCommand("cmd_Iniciar_Diagnostico");
@@ -29,9 +69,9 @@ public class ControladorPrincipal implements ActionListener {
 	    
 		vista.comboBox_tipo_problema.addActionListener(controladorPrincipal);
 	
-}
+    }
 
-
+ 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
@@ -64,9 +104,18 @@ public class ControladorPrincipal implements ActionListener {
 				System.out.println("Se inicio el diagnostico para problemas de  APAGADO ");
 		        // todo lo de problemas de apagado (Fernando)
 		    }
-		}
-		
-	}
+
+
+
+
+
+
+
+
+	
+	
+	
+
 
 	private void iniciarPreguntas() {
 	   int a = preguntar("Su celular es del tipo  con tapa?");
@@ -101,3 +150,4 @@ public class ControladorPrincipal implements ActionListener {
     }
 	
 }
+**/
