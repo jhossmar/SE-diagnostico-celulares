@@ -7,13 +7,14 @@ import com.sample.modelo.Diagnostico;
 import java.util.ArrayList;
 
 global com.sample.modelo.Diagnostico diagnostico
-//global vista
+global com.sample.vista.PanelProblemaAudio vista
 
 rule "regla inicial"
 	when
 		Problema(estado == TipoEstado.REALIZA_LLAMADA)
 	then
 		System.out.println("hola beimar");
+		vista.cambiarSugerencia("Debes reparar todo el celular");
 		//insert (new Problema(TipoEstado.NOS_ESCUCHAN));
 		//insert (new Problema(TipoEstado.NO_ESCUCHAMOS_NADA));
 end

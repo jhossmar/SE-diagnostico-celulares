@@ -33,6 +33,8 @@ public class VistaPrincipal extends JFrame {
 	public JButton btnAceptar;
 	public CardLayout cardLayout;
 	public JComboBox comboBox;
+	
+	public PanelProblemaAudio panelAudio;
 
 	public VistaPrincipal() {
 		this.configurarVista();
@@ -69,7 +71,9 @@ public class VistaPrincipal extends JFrame {
 		 * Aqui se agrega los paneles que cambian 
 		 */
 		panelParaCambiar.add(new JPanel(), "Inicio");
-		panelParaCambiar.add(new PanelProblemaAudio(), "Audio");
+		
+		panelAudio = new PanelProblemaAudio();
+		panelParaCambiar.add(panelAudio, "Audio");
 		
 		contentPane.add(panelParaCambiar);
 	}

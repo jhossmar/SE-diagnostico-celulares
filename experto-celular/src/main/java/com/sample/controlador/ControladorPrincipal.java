@@ -12,10 +12,12 @@ import com.sample.vista.VistaPrincipal;
 public class ControladorPrincipal implements ActionListener{
 
 	VistaPrincipal vistaPrincipal;
+	ConfiguracionDrools drools;
 	
 	public ControladorPrincipal(VistaPrincipal vistaPrincipal) {
 		this.vistaPrincipal = vistaPrincipal;
 		this.vistaPrincipal.agregarEvento(this);
+		this.drools = new ConfiguracionDrools();
 	}
 	
 	
@@ -30,6 +32,7 @@ public class ControladorPrincipal implements ActionListener{
 			 */
 			if (problema == "Problema con el Audio") {
 				vistaPrincipal.cambiarPanel("Audio");
+				ControladorProblemaAudio controlador = new ControladorProblemaAudio(drools, vistaPrincipal.panelAudio);
 			}
 			
 			
