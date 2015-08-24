@@ -11,7 +11,13 @@ public class Diagnostico {
 	 
 	 public  Diagnostico(Problema estado) {
 		 Problema a = new Problema(TipoEstado.MEMORIA);
-		 
-		 
-	 }
+    }
+
+	public Problema getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Problema estado) {
+		this.estado = estado;
+	}
 }
