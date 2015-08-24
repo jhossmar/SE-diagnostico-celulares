@@ -6,7 +6,7 @@ import org.kie.api.runtime.KieSession;
 
 public class ConfiguracionDrools {
 	KieServices ks;
-	public KieContainer kContainer;
+	KieContainer kContainer;
 	
 	public ConfiguracionDrools() {
 		leerBaseConocimientos();

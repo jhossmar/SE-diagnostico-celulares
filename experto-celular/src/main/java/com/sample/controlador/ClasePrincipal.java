@@ -1,8 +1,19 @@
 package com.sample.controlador;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import com.sample.vista.PantallaCargandoMain;
 import com.sample.vista.VistaPrincipal;
 
 public class ClasePrincipal {
@@ -32,8 +43,10 @@ public class ClasePrincipal {
 		VistaPrincipal vistaPrincipal = new VistaPrincipal();
 
 		ControladorPrincipal controlador = new ControladorPrincipal(vistaPrincipal);
-
+		new PantallaCargandoMain();
 		vistaPrincipal.iniciar();
+		
+		
 
 	}
 }

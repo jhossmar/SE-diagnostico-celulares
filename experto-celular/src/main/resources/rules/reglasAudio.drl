@@ -14,6 +14,7 @@ rule "regla inicial"
 		Problema(estado == TipoEstado.REALIZA_LLAMADA)
 	then
 		System.out.println("hola beimar");
+		vista.cambiarElementos();
 		vista.cambiarSugerencia("Debes reparar todo el celular");
 		//insert (new Problema(TipoEstado.NOS_ESCUCHAN));
 		//insert (new Problema(TipoEstado.NO_ESCUCHAMOS_NADA));

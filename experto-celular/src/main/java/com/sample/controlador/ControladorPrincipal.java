@@ -32,7 +32,7 @@ public class ControladorPrincipal implements ActionListener{
 			 */
 			if (problema == "Problema con el Audio") {
 				vistaPrincipal.cambiarPanel("Audio");
-				ControladorProblemaAudio controlador = new ControladorProblemaAudio(drools, vistaPrincipal.panelAudio);
+				ControladorProblemaAudio controlador = new ControladorProblemaAudio(drools, vistaPrincipal.panelAudio, vistaPrincipal);
 			}
 			
 			

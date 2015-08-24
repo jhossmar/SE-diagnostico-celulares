@@ -13,6 +13,7 @@ public class Diagnostico {
 	 private List estados;
 	 private String conclusion;
 	 
+	 
 	 public  Diagnostico() {
 		estados = new ArrayList();
 	 }

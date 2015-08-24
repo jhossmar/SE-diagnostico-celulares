@@ -138,7 +138,8 @@ public class VistaPrincipal extends JFrame {
 
 	public void configurarVista() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 905, 524);
+		this.setSize(905, 524);
+		setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setTitle("Sistemas Expertos-Diagnostico Celulares");
 	}

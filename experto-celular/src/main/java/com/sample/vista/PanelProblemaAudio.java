@@ -10,16 +10,23 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 
 import sun.security.krb5.internal.PAEncTSEnc;
 
 public class PanelProblemaAudio extends JPanel {
+	
+	public JDialog dlg;
 	
 	JPanel panelPregunta;
 	JPanel panelAceptar;
@@ -34,13 +41,15 @@ public class PanelProblemaAudio extends JPanel {
 	
 	public JButton botonAceptar;
 	
+	public JComboBox comboProblemas;
+	
 	public PanelProblemaAudio() {
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(new Dimension(430, 440));
 		//this.setBackground(Color.BLUE);
 		
 		
-		JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		panelPregunta = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		labelpregunta = new JLabel("Se pueden Realizar Llamadas??");
 		ButtonGroup grupo = new ButtonGroup();
 		radioSi = new JRadioButton("SI");
@@ -48,11 +57,11 @@ public class PanelProblemaAudio extends JPanel {
 		grupo.add(radioSi);
 		grupo.add(radioNo);
 		
-		panel.add(labelpregunta);
-		panel.add(radioSi);
-		panel.add(radioNo);
+		panelPregunta.add(labelpregunta);
+		panelPregunta.add(radioSi);
+		panelPregunta.add(radioNo);
 		
-		this.add(panel, BorderLayout.NORTH);
+		this.add(panelPregunta, BorderLayout.NORTH);
 		
 		panelAceptar = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		botonAceptar = new JButton("Aceptar");
@@ -72,5 +81,29 @@ public class PanelProblemaAudio extends JPanel {
 	
 	public void agregarEventoAceptar(ActionListener action) {
 		this.botonAceptar.addActionListener(action);
+	}
+	
+	public void cambiarElementos(){
+		//limpia el panel
+		this.panelPregunta.removeAll();
+		this.panelPregunta.repaint();
+		SwingUtilities.updateComponentTreeUI(this);
+		
+		this.panelPregunta.add(crearPanel());
+	}
+	
+	public JPanel crearPanel() {
+		JPanel panel = new JPanel(new FlowLayout());
+		JLabel pregunta = new JLabel("Inserte Hechos: ");
+		panel.add(pregunta);
+		
+		this.comboProblemas = new JComboBox();
+		String[] problemas = new String[]{"Nos escuchan","No nos escuchan",
+				"Conectores LImpios"};
+		
+		this.comboProblemas.setModel(new DefaultComboBoxModel(problemas));
+		panel.add(comboProblemas);
+		
+		return panel;
 	}
 }
