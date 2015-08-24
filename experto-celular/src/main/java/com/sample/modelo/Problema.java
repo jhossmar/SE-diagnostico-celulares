@@ -2,7 +2,6 @@ package com.sample.modelo;
 
 public class Problema {
 	private int estado;
-	//private String a="fsda ";
 	
 	
 	public Problema(int estado) {

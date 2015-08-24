@@ -9,49 +9,65 @@ import java.util.ArrayList;
 global com.sample.modelo.Diagnostico diagnostico
 //global vista
 
-rule "Verificar que no escuchamos"
-	salience 10
-
+rule "regla inicial"
 	when
-		problema : Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)
+		Problema(estado == TipoEstado.REALIZA_LLAMADA)
 	then
-		diagnostico.agregarProblema(problema);
-		mandarMensajeVista();
-		System.out.println("Hola mundo como estan todos");
+		System.out.println("hola beimar");
+		//insert (new Problema(TipoEstado.NOS_ESCUCHAN));
+		//insert (new Problema(TipoEstado.NO_ESCUCHAMOS_NADA));
 end
 
-
-rule "Verificar Componentes Pasivos"
+rule "verificacion no escuchamos"
 	when
-		
-		//problema : Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA ||  == TipoEstado.COMPONENTES_PASIVOS_BUEN_ESTADO)
-		ArrayList(size == 2) from collect( Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA ||  == TipoEstado.COMPONENTES_PASIVOS_BUEN_ESTADO) )
+		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
+		Problema(estado == TipoEstado.NOS_ESCUCHAN) 
+		//and 
+		//Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)
 	then
-		//diagnostico.agregarProblema(problema);
-		System.out.println("que macana");
+		System.out.println("las tres condiciones juntas");
+		//insert (new Problema(TipoEstado.COMPONENTES_PASIVOS_BUEN_ESTADO));
 end
 
-rule "verificar que no nos escuchan"
+rule "verificacion componentes pasivos"
 	when
-		exists (Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) and Problema(estado == TipoEstado.NO_ESCUCHAN_CON_AUDIFONOS))
-	then
-		System.out.println("hola");
-end
-
-rule "verificar que no se escuchan con audifonos"
-	when
-		Problema(estado == TipoEstado.NO_ESCUCHAN_CON_AUDIFONOS)
+		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
+		Problema(estado == TipoEstado.NOS_ESCUCHAN) and 
+		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA) and
+		Problema(estado == TipoEstado.COMPONENTES_PASIVOS_BUEN_ESTADO)
 	then
 		
 end
 
-rule "verificar que los conectores estan limpios"
+rule "verificar no nos escuchan"
 	when
-		exists (Problema(estado == TipoEstado.CONECTORES_LIMPIOS) and Problema(estado == TipoEstado.NO_ESCUCHAN_CON_AUDIFONOS))
+		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
+		Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) and
+		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)
 	then
 		
 end
 
-function void mandarMensajeVista() {
-	System.out.println("todo bien aqui");
-}
+rule "verificar no se escucha con audifonos"
+	when
+		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
+		Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) and
+		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA) and
+		Problema(estado == TipoEstado.NO_SE_ESCUCHA_CON_AUDIFONOS)
+	then
+		
+end
+
+
+rule "verificar conectores estan limpios"
+	
+	when
+		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
+		Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) and
+		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA) and
+		Problema(estado == TipoEstado.NO_SE_ESCUCHA_CON_AUDIFONOS) and
+		Problema(estado == TipoEstado.CONECTORES_LIMPIOS)
+	then
+		System.out.println("esto es un problema de carga");
+		
+end

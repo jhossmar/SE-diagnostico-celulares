@@ -43,14 +43,14 @@ public class Diagnostico {
      	KieSession kSession = kContainer.newKieSession("ksession-rules");
      	
      	Problema a  = new Problema(TipoEstado.NO_NOS_ESCUCHAN);
-     	Problema b  = new Problema(TipoEstado.NO_ESCUCHAN_CON_AUDIFONOS);
+     	//Problema b  = new Problema(TipoEstado.NO_ESCUCHAN_CON_AUDIFONOS);
      	
      	Diagnostico diagnostico = new Diagnostico();
      	
      	kSession.setGlobal("diagnostico", diagnostico);
      	
      	kSession.insert(a);
-     	kSession.insert(b);
+     	//kSession.insert(b);
      	
      	kSession.fireAllRules();
      	

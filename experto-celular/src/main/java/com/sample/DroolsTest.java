@@ -4,6 +4,9 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
+import com.sample.modelo.Problema;
+import com.sample.modelo.TipoEstado;
+
 /**
  * This is a sample class to launch a rule.
  */
@@ -20,7 +23,19 @@ public class DroolsTest {
             Message message = new Message();
             message.setMessage("Hello World");
             message.setStatus(Message.HELLO);
-            kSession.insert(message);
+            
+            Problema pro = new Problema(TipoEstado.REALIZA_LLAMADA);
+            
+            Problema pro2 = new Problema(TipoEstado.NOS_ESCUCHAN);
+            
+            //kSession.insert(message);
+            
+            kSession.insert(pro);
+            
+            kSession.fireAllRules();
+            
+            
+            kSession.insert(pro2);
             kSession.fireAllRules();
         } catch (Throwable t) {
             t.printStackTrace();
