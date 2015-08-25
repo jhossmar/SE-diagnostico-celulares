@@ -13,21 +13,18 @@ rule "regla inicial"
 	when
 		Problema(estado == TipoEstado.REALIZA_LLAMADA)
 	then
-		System.out.println("hola beimar");
-		vista.cambiarSugerencia("Debes reparar todo el celular");
-		//insert (new Problema(TipoEstado.NOS_ESCUCHAN));
-		//insert (new Problema(TipoEstado.NO_ESCUCHAMOS_NADA));
+		vista.cambiarElementos();
+		vista.cambiarSugerencia("Regla de inicio");
 end
 
 rule "verificacion no escuchamos"
 	when
 		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
-		Problema(estado == TipoEstado.NOS_ESCUCHAN) 
-		//and 
-		//Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)
+		Problema(estado == TipoEstado.NOS_ESCUCHAN) and 
+		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)
 	then
-		System.out.println("las tres condiciones juntas");
-		//insert (new Problema(TipoEstado.COMPONENTES_PASIVOS_BUEN_ESTADO));
+		vista.cambiarSugerencia("revisar el estado de los componentes pasivos (capacitores, resistencias y bobinas) de la zona de donde se conecta el auricular.");
+		vista.mostrarSugerencia();
 end
 
 rule "verificacion componentes pasivos"
@@ -37,7 +34,8 @@ rule "verificacion componentes pasivos"
 		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA) and
 		Problema(estado == TipoEstado.COMPONENTES_PASIVOS_BUEN_ESTADO)
 	then
-		
+		vista.cambiarSugerencia("realizar un resoldado de las componentes pasivos.");
+		vista.mostrarSugerencia();
 end
 
 rule "verificar no nos escuchan"
@@ -46,7 +44,8 @@ rule "verificar no nos escuchan"
 		Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) and
 		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)
 	then
-		
+		vista.cambiarSugerencia("usar manos libres (audífonos)");
+		vista.mostrarSugerencia();
 end
 
 rule "verificar no se escucha con audifonos"
@@ -56,7 +55,8 @@ rule "verificar no se escucha con audifonos"
 		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA) and
 		Problema(estado == TipoEstado.NO_SE_ESCUCHA_CON_AUDIFONOS)
 	then
-		
+		vista.cambiarSugerencia("limpiar el conector inferior ");
+		vista.mostrarSugerencia();
 end
 
 
@@ -69,6 +69,9 @@ rule "verificar conectores estan limpios"
 		Problema(estado == TipoEstado.NO_SE_ESCUCHA_CON_AUDIFONOS) and
 		Problema(estado == TipoEstado.CONECTORES_LIMPIOS)
 	then
-		System.out.println("esto es un problema de carga");
+		vista.cambiarSugerencia("resoldar los componentes del AF y Área Lógica");
+		vista.mostrarSugerencia();
 		
 end
+
+
