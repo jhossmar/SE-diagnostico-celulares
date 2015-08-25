@@ -2,6 +2,7 @@ package com.sample.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.kie.api.KieServices;

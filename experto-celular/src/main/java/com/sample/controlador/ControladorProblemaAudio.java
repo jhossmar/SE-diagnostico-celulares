@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import org.kie.api.runtime.KieSession;
 
+import com.sample.modelo.Mapeador;
 import com.sample.modelo.Problema;
 import com.sample.modelo.TipoEstado;
 import com.sample.vista.PanelProblemaAudio;
@@ -26,7 +27,9 @@ public class ControladorProblemaAudio implements ActionListener{
 	VistaPrincipal frame;
 	VistoBueno mensaje;
 
+	Mapeador mapeador = new Mapeador();
 	
+	boolean bandera = true;
 
 	public ControladorProblemaAudio(ConfiguracionDrools drools,
 			PanelProblemaAudio panelAudio, VistaPrincipal frame) {
@@ -46,18 +49,33 @@ public class ControladorProblemaAudio implements ActionListener{
 
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == panelAudio.botonAceptar) {
-			if (panelAudio.radioSi.isSelected()) {
+			
+			if(!bandera) {
+				String llave = panelAudio.comboProblemas.getSelectedItem().toString();
+				Problema problema = mapeador.obtenerProblema(llave);
+				
+				mensaje.mostrar();
+				
+				this.sesion.insert(problema);
+				this.sesion.fireAllRules();
+			}
+			
+			if (panelAudio.radioSi.isSelected() && bandera) {
 
 				mensaje.mostrar();
 
 				Problema pro = new Problema(TipoEstado.REALIZA_LLAMADA);
 				this.sesion.insert(pro);
 				this.sesion.fireAllRules();
-			} else {
-				JOptionPane.showConfirmDialog(frame,
-						"Su celular no tiene señal");
-				mensaje.dispose();
+				System.out.println("nuevamente cajfd.....");
+				
+				bandera = false;
+			} else if(panelAudio.radioNo.isSelected()) {
+				JOptionPane.showMessageDialog(null, "Debe conectarse a una linea");
+				
 			}
+			
+			
 
 		}
 

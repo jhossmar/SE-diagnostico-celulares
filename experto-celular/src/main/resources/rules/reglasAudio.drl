@@ -15,7 +15,7 @@ rule "regla inicial"
 	then
 		System.out.println("hola beimar");
 		vista.cambiarElementos();
-		vista.cambiarSugerencia("Debes reparar todo el celular");
+		vista.cambiarSugerencia("Regla de inicio");
 		//insert (new Problema(TipoEstado.NOS_ESCUCHAN));
 		//insert (new Problema(TipoEstado.NO_ESCUCHAMOS_NADA));
 end
@@ -23,12 +23,10 @@ end
 rule "verificacion no escuchamos"
 	when
 		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
-		Problema(estado == TipoEstado.NOS_ESCUCHAN) 
-		//and 
-		//Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)
+		Problema(estado == TipoEstado.NOS_ESCUCHAN) and 
+		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)
 	then
-		System.out.println("las tres condiciones juntas");
-		//insert (new Problema(TipoEstado.COMPONENTES_PASIVOS_BUEN_ESTADO));
+		vista.cambiarSugerencia("primera regla de documento");
 end
 
 rule "verificacion componentes pasivos"
@@ -38,7 +36,7 @@ rule "verificacion componentes pasivos"
 		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA) and
 		Problema(estado == TipoEstado.COMPONENTES_PASIVOS_BUEN_ESTADO)
 	then
-		
+		vista.cambiarSugerencia("segunda regla de documento");
 end
 
 rule "verificar no nos escuchan"
@@ -47,7 +45,7 @@ rule "verificar no nos escuchan"
 		Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) and
 		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)
 	then
-		
+		vista.cambiarSugerencia("tercera regla de documento");
 end
 
 rule "verificar no se escucha con audifonos"
@@ -57,7 +55,7 @@ rule "verificar no se escucha con audifonos"
 		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA) and
 		Problema(estado == TipoEstado.NO_SE_ESCUCHA_CON_AUDIFONOS)
 	then
-		
+		vista.cambiarSugerencia("cuarta regla de documento");
 end
 
 
@@ -70,6 +68,6 @@ rule "verificar conectores estan limpios"
 		Problema(estado == TipoEstado.NO_SE_ESCUCHA_CON_AUDIFONOS) and
 		Problema(estado == TipoEstado.CONECTORES_LIMPIOS)
 	then
-		System.out.println("esto es un problema de carga");
+		vista.cambiarSugerencia("quinta regla de documento");
 		
 end

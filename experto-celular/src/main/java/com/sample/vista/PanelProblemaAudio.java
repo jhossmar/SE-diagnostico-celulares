@@ -98,8 +98,9 @@ public class PanelProblemaAudio extends JPanel {
 		panel.add(pregunta);
 		
 		this.comboProblemas = new JComboBox();
-		String[] problemas = new String[]{"Nos escuchan","No nos escuchan",
-				"Conectores LImpios"};
+		String[] problemas = new String[]{"No escuchamos nada","Nos escuchan",
+				"Los componentes pasivos en buen estado", "No nos escuchan",
+				"No se escucha con audifonos", "Conectores Limpios"};
 		
 		this.comboProblemas.setModel(new DefaultComboBoxModel(problemas));
 		panel.add(comboProblemas);
