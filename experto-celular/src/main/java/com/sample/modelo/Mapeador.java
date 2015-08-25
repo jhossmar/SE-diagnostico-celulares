@@ -1,6 +1,7 @@
 package com.sample.modelo;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Mapeador {
@@ -29,5 +30,16 @@ public class Mapeador {
 		} else {
 			return (Problema) this.mapa.get(llave);
 		}
+	}
+	
+	public void recorrer() {
+		Iterator iterador = this.mapa.entrySet().iterator();
+	    //Iterator<Map.Entry<String, Float>> iterador = listaProductos.entrySet().iterator();
+	    Map.Entry producto;
+	    while (iterador.hasNext()) {
+	        producto = (Map.Entry) iterador.next();
+	        //producto = iterador.next(); Si se usase tambien la otra linea comentada.
+	        System.out.println(producto.getKey() + " - " + producto.getValue());
+	    } 
 	}
 }

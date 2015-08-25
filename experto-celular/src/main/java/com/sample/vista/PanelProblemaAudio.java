@@ -17,6 +17,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
@@ -67,12 +68,20 @@ public class PanelProblemaAudio extends JPanel {
 		botonAceptar = new JButton("Aceptar");
 		panelAceptar.add(botonAceptar);
 		
-		panelSugerencia = new JPanel(new FlowLayout());
-		labelSugerencia = new JLabel("Sugerencias");
-		panelSugerencia.add(labelSugerencia);
+		JLabel titulo = new JLabel("Sugerencias");
+		
+		panelSugerencia = new JPanel(new BorderLayout());
+		labelSugerencia = new JLabel("");
+		panelSugerencia.add(titulo, BorderLayout.NORTH);
+		panelSugerencia.add(labelSugerencia, BorderLayout.CENTER);
 		
 		this.add(panelSugerencia, BorderLayout.CENTER);
 		this.add(botonAceptar, BorderLayout.SOUTH);
+	}
+	
+	public void mostrarSugerencia() {
+		
+		JOptionPane.showMessageDialog(null, labelSugerencia.getText(), "Sugerencia", 1);
 	}
 	
 	public void cambiarSugerencia(String texto) {
