@@ -14,7 +14,7 @@ rule "regla inicial"
 		Problema(estado == TipoEstado.REALIZA_LLAMADA)
 	then
 		vista.cambiarElementos();
-		vista.cambiarSugerencia("Regla de inicio");
+		vista.cambiarSugerencia("Infiriendo");
 end
 
 rule "verificacion no escuchamos"

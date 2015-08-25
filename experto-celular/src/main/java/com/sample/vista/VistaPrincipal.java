@@ -3,6 +3,7 @@ package com.sample.vista;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.MenuBar;
 
 import javafx.scene.image.Image;
@@ -64,7 +65,8 @@ public class VistaPrincipal extends JFrame {
 		panelParaCambiar = new JPanel();
 		this.cardLayout = new CardLayout();
 		panelParaCambiar.setLayout(this.cardLayout);
-		panelParaCambiar.setBorder(BorderFactory.createTitledBorder("Panel de Cambio"));
+		panelParaCambiar.setFont(new Font("Tahoma", 0, 20));
+		panelParaCambiar.setBorder(BorderFactory.createTitledBorder("Resultados"));
 		panelParaCambiar.setBounds(448, 12, 430, 440);
 		
 		/**
@@ -82,14 +84,16 @@ public class VistaPrincipal extends JFrame {
 
 	public void iniciarPanelCentral() {
 		JPanel panel = new JPanel();
-		panel.setBounds(26, 293, 384, 173);
+		panel.setBounds(26, 340, 384, 173);
 		contentPane.add(panel);
 
 		JLabel lblNewLabel1 = new JLabel("Indique su Problema: ");
+		lblNewLabel1.setFont(new Font("Tahoma", 0, 20));
 		lblNewLabel1.setBounds(28, 78, 200, 50);
 		panel.add(lblNewLabel1);
 
 		comboBox = new JComboBox();
+		comboBox.setFont(new Font("Tahoma", 0, 20));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {
 				"Problema de Carga", "Problema con el Audio",
 				"Problema con el Display", "Problemas de Apagado" }));
@@ -97,6 +101,8 @@ public class VistaPrincipal extends JFrame {
 		panel.add(comboBox);
 
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setFocusable(false);
+		btnAceptar.setFont(new Font("Tahoma", 0, 20));
 		btnAceptar.setBounds(164, 141, 97, 25);
 
 		panel.add(btnAceptar);
@@ -108,27 +114,32 @@ public class VistaPrincipal extends JFrame {
 		this.setJMenuBar(menuBar);
 
 		JMenu mnArchivo = new JMenu("Archivo");
+		mnArchivo.setFont(new Font("Tahoma", 0, 20));
 		menuBar.add(mnArchivo);
 
 		JMenuItem mntmCerrar = new JMenuItem("Cerrar");
+		mntmCerrar.setFont(new Font("Tahoma", 0, 20));
 		mnArchivo.add(mntmCerrar);
 
 		JMenu mnAbout = new JMenu("About");
+		mnAbout.setFont(new Font("Tahoma", 0, 20));
 		menuBar.add(mnAbout);
 
 		JMenuItem mntmDocumento = new JMenuItem("Documento");
+		mntmDocumento.setFont(new Font("Tahoma", 0, 20));
 		mnAbout.add(mntmDocumento);
 	}
 
 	public void agregarImagen() {
 		JLabel lblNewLabel = new JLabel("Diagnostico para Celulares");
-		lblNewLabel.setBounds(26, 35, 367, 42);
+		lblNewLabel.setBounds(22, 0, 367, 42);
+		lblNewLabel.setFont(new Font("Tahoma", 0, 20)); 
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblImagen = new JLabel();
-		lblImagen.setIcon(new ImageIcon("img/descarga.jpg"));
+		lblImagen.setIcon(new ImageIcon("img/imagenp.jpg"));
 		lblImagen.setBackground(Color.MAGENTA);
-		lblImagen.setBounds(20, 68, 480, 220);
+		lblImagen.setBounds(20, 60, 415, 260);
 		contentPane.add(lblImagen);
 	}
 	
