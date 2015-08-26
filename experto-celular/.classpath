@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="DROOLS/Drools"/>
-	<classpathentry kind="lib" path="librerias/JTattoo-1.6.11.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Drools"/>
+	<classpathentry kind="lib" path="C:/Users/Pavillondv7/Desktop/Marce!/Taller de Simulacion de Sistemas/LibreriasSimulacion 1/JTattoo-1.6.11.jar"/>
 	<classpathentry kind="output" path="target"/>
 </classpath>

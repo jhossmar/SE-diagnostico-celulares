@@ -24,4 +24,16 @@ public class TipoEstado {
 	
 	public final static int ESCUCHAMOS = 14;
 	
+public final static int RECARGA_BATERIA = 15;
+	
+	public final static int NO_RECARGA_BATERIA = 16;
+	
+	public final static int DIAGNOSTICO_CARGA = 17;
+	
+	public final static int FUSIBLE_CARGA = 18;
+	
+	public final static int NO_FUSIBLE_CARGA = 19;
+	
+	public final static int CONTINUIDAD_EXTREMOS = 20;
+	
 }

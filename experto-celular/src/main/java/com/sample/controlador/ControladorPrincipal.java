@@ -7,6 +7,7 @@ import com.sample.modelo.Diagnostico;
 import com.sample.modelo.Problema;
 import com.sample.modelo.TipoEstado;
 import com.sample.vista.PanelProblemaAudio;
+import com.sample.vista.PanelProblemaCarga;
 import com.sample.vista.VistaPrincipal;
 
 public class ControladorPrincipal implements ActionListener{
@@ -33,8 +34,13 @@ public class ControladorPrincipal implements ActionListener{
 			if (problema == "Problema con el Audio") {
 				vistaPrincipal.cambiarPanel("Audio");
 				ControladorProblemaAudio controlador = new ControladorProblemaAudio(drools, vistaPrincipal.panelAudio, vistaPrincipal);
+				
 			}
 			
+			if(problema == "Problema de Carga"){
+				vistaPrincipal.cambiarPanel("Carga");
+				ControladorProblemaCarga controladorCarga = new ControladorProblemaCarga(drools, vistaPrincipal.panelCarga, vistaPrincipal);
+			}
 			
 		}
 		
