@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -66,6 +67,8 @@ public class PanelProblemaAudio extends JPanel {
 		
 		panelAceptar = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		botonAceptar = new JButton("Aceptar");
+		botonAceptar.setFont(new Font("Tahoma", 0, 20));
+		botonAceptar.setFocusable(false);
 		panelAceptar.add(botonAceptar);
 		
 		JLabel titulo = new JLabel("Sugerencias");
@@ -109,7 +112,7 @@ public class PanelProblemaAudio extends JPanel {
 		this.comboProblemas = new JComboBox();
 		String[] problemas = new String[]{"No escuchamos nada","Nos escuchan",
 				"Los componentes pasivos en buen estado", "No nos escuchan",
-				"No se escucha con audifonos", "Conectores Limpios"};
+				"No se escucha con audifonos", "Conectores Limpios","Escuchamos durante llamadas"};
 		
 		this.comboProblemas.setModel(new DefaultComboBoxModel(problemas));
 		panel.add(comboProblemas);

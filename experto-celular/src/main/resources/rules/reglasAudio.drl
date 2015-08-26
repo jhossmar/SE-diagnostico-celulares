@@ -14,7 +14,8 @@ rule "regla inicial"
 		Problema(estado == TipoEstado.REALIZA_LLAMADA)
 	then
 		vista.cambiarElementos();
-		vista.cambiarSugerencia("Regla de inicio");
+		
+		vista.cambiarSugerencia("Infiriendo");
 end
 
 rule "verificacion no escuchamos"
@@ -38,11 +39,11 @@ rule "verificacion componentes pasivos"
 		vista.mostrarSugerencia();
 end
 
-rule "verificar no nos escuchan"
+rule "verificar no nos escuchan regla 3"
 	when
 		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
-		Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) and
-		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)
+		(Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) or
+		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA))
 	then
 		vista.cambiarSugerencia("usar manos libres (audífonos)");
 		vista.mostrarSugerencia();
@@ -51,8 +52,8 @@ end
 rule "verificar no se escucha con audifonos"
 	when
 		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
-		Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) and
-		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA) and
+		(Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) or
+		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)) and
 		Problema(estado == TipoEstado.NO_SE_ESCUCHA_CON_AUDIFONOS)
 	then
 		vista.cambiarSugerencia("limpiar el conector inferior ");
@@ -64,8 +65,8 @@ rule "verificar conectores estan limpios"
 	
 	when
 		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
-		Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) and
-		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA) and
+		(Problema(estado == TipoEstado.NO_NOS_ESCUCHAN) or
+		Problema(estado == TipoEstado.NO_ESCUCHAMOS_NADA)) and
 		Problema(estado == TipoEstado.NO_SE_ESCUCHA_CON_AUDIFONOS) and
 		Problema(estado == TipoEstado.CONECTORES_LIMPIOS)
 	then
@@ -74,4 +75,23 @@ rule "verificar conectores estan limpios"
 		
 end
 
+rule "verificar microfono"
+	// Resolucion de conflicto con la regla 3 (Esta regla se ejecutara primero)
+	salience 10
+	when
+		Problema(estado == TipoEstado.REALIZA_LLAMADA) and 
+		Problema(estado == TipoEstado.NO_NOS_ESCUCHAN)
+		
+	then
+		insert(new Problema(TipoEstado.MICROFONO));
+end
+
+rule "verificar si escuchamos durante las llamadas"
+	when
+		Problema(estado == TipoEstado.MICROFONO)
+		Problema(estado == TipoEstado.ESCUCHAMOS)
+	then
+		vista.cambiarSugerencia("Reemplazar el microfono del celular");
+		vista.mostrarSugerencia();
+end
 

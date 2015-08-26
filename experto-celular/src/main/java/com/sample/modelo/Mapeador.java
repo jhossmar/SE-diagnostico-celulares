@@ -21,6 +21,7 @@ public class Mapeador {
 		this.mapa.put("No nos escuchan", new Problema(TipoEstado.NO_NOS_ESCUCHAN));
 		this.mapa.put("No se escucha con audifonos", new Problema(TipoEstado.NO_SE_ESCUCHA_CON_AUDIFONOS));
 		this.mapa.put("Conectores Limpios", new Problema(TipoEstado.CONECTORES_LIMPIOS));
+		this.mapa.put("Escuchamos durante llamadas", new Problema(TipoEstado.ESCUCHAMOS));
 	}
 	
 	public Problema obtenerProblema(String llave) {

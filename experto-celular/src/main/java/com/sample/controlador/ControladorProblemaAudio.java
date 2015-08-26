@@ -44,7 +44,6 @@ public class ControladorProblemaAudio implements ActionListener{
 		this.frame = frame;
 		this.mensaje = new VistoBueno(this.frame);
 		
-		
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
@@ -58,6 +57,7 @@ public class ControladorProblemaAudio implements ActionListener{
 				
 				this.sesion.insert(problema);
 				this.sesion.fireAllRules();
+				
 			}
 			
 			if (panelAudio.radioSi.isSelected() && bandera) {
@@ -67,9 +67,9 @@ public class ControladorProblemaAudio implements ActionListener{
 				Problema pro = new Problema(TipoEstado.REALIZA_LLAMADA);
 				this.sesion.insert(pro);
 				this.sesion.fireAllRules();
-				System.out.println("nuevamente cajfd.....");
 				
 				bandera = false;
+				
 			} else if(panelAudio.radioNo.isSelected()) {
 				JOptionPane.showMessageDialog(null, "Debe conectarse a una linea");
 				
@@ -79,6 +79,11 @@ public class ControladorProblemaAudio implements ActionListener{
 
 		}
 
+	}
+	
+	public void actualizarFoco() {
+		this.frame.setFocusable(true);
+		this.frame.requestFocusInWindow();
 	}
 
 	

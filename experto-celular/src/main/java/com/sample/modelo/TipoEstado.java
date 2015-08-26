@@ -36,4 +36,6 @@ public class TipoEstado {
 	
 	public final static int  REALIZA_LLAMADA = 13;
 	
+	public final static int ESCUCHAMOS = 14;
+	
 }
