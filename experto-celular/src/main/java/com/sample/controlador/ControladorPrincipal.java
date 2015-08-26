@@ -21,7 +21,7 @@ public class ControladorPrincipal implements ActionListener {
   public ControladorPrincipal(Diagnostico diag, VistaPrincipal vista) {
      this.diagnostico= diag;
      this.vistaPrincipal= vista;
-     actionListener(this); // escuchador para la vista
+     //actionListener(this); // escuchador para la vista
      
   }
 
