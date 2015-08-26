@@ -36,4 +36,6 @@ public final static int RECARGA_BATERIA = 15;
 	
 	public final static int CONTINUIDAD_EXTREMOS = 20;
 	
+	public final static int ADAPTADOR_CELULAR = 21;
+	
 }

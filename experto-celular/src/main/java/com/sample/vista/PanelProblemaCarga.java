@@ -180,4 +180,20 @@ public JDialog dlg;
 		
 		this.panelPregunta.add(panel);
 	}
+	public void adaptadorCelulares(){
+		JPanel panel = new JPanel(new FlowLayout());
+		JLabel pregunta = new JLabel("El adaptador del celular esta en buen estado?");
+		panel.add(pregunta);
+		
+		ButtonGroup grupo = new ButtonGroup();
+		radioSi = new JRadioButton("SI");
+		radioNo = new JRadioButton("NO");
+		grupo.add(radioSi);
+		grupo.add(radioNo);
+		
+		panel.add(radioSi);
+		panel.add(radioNo);
+		
+		this.panelPregunta.add(panel);
+	}
 }
