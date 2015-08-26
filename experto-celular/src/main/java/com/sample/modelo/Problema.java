@@ -1,4 +1,4 @@
-package com.sample.modelo;
+ package com.sample.modelo;
 
 public class Problema {
 	private int estado;

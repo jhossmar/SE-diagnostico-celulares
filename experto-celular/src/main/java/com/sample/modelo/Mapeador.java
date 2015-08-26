@@ -1,4 +1,4 @@
-package com.sample.modelo;
+ 
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -42,4 +42,6 @@ public class Mapeador {
 	        System.out.println(producto.getKey() + " - " + producto.getValue());
 	    } 
 	}
+	
 }
+
