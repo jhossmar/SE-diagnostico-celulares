@@ -1,0 +1,55 @@
+package rules
+
+import com.sample.modelo.Problema;
+import com.sample.modelo.TipoEstado;
+import com.sample.modelo.Diagnostico;
+import java.util.ArrayList;
+
+global com.sample.modelo.Diagnostico diagnostico
+global com.sample.vista.PanelProblemaCarga vistaCarga
+global com.sample.modelo.Carga carga
+
+rule "carga bateria"
+	when
+		Problema(estado == TipoEstado.RECARGA_BATERIA)
+	then
+		vistaCarga.limpiar();
+		vistaCarga.cambiarDuracionBateria();
+		vistaCarga.cambiarSugerencia("Regla de inicio");
+end
+
+rule "no carga bateria"
+	when
+		Problema(estado == TipoEstado.NO_RECARGA_BATERIA)
+	then
+		vistaCarga.limpiar();
+		vistaCarga.cambiarConectorBateria();
+		vistaCarga.cambiarSugerencia("Regla de inicio");
+end
+
+rule "aplicaciones"
+	when
+		Problema(estado == TipoEstado.DIAGNOSTICO_CARGA)
+	then
+		vistaCarga.limpiar();
+		vistaCarga.principio();
+		vistaCarga.cambiarSugerencia("Regla de inicio");
+end
+
+rule "fusibles"
+	when
+		Problema(estado == TipoEstado.FUSIBLE_CARGA)
+	then
+		vistaCarga.limpiar();
+		vistaCarga.cambiarFusibles();
+		vistaCarga.cambiarSugerencia("Regla de inicio");
+end
+
+rule "fusibles extremos"
+	when
+		Problema(estado == TipoEstado.CONTINUIDAD_EXTREMOS)
+	then
+		vistaCarga.limpiar();
+		vistaCarga.cambiarFusiblesExtremos();
+		vistaCarga.cambiarSugerencia("Regla de inicio");
+end
