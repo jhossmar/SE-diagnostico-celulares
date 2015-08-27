@@ -37,7 +37,11 @@ public class VistaPrincipal extends JFrame {
 	
 	public PanelProblemaAudio panelAudio;
 	public PanelProblemaCarga panelCarga;
+
 	public PanelProblemaDisplay panelDisplay;
+
+	public PanelProblemaApagado panelApagado;
+
 
 	public VistaPrincipal() {
 		this.configurarVista();
@@ -82,8 +86,13 @@ public class VistaPrincipal extends JFrame {
 		panelCarga = new PanelProblemaCarga();
 		panelParaCambiar.add(panelCarga, "Carga");
 		
+
 		panelDisplay= new PanelProblemaDisplay();
 		panelParaCambiar.add(panelDisplay,"Display");
+
+		panelApagado = new PanelProblemaApagado();
+		panelParaCambiar.add(panelApagado, "Apagado");
+
 		
 		contentPane.add(panelParaCambiar);
 	}

@@ -3,7 +3,6 @@ package rules
 import com.sample.modelo.Problema;
 import com.sample.modelo.TipoEstado;
 import com.sample.modelo.Diagnostico;
-import java.util.ArrayList;
 
 global com.sample.modelo.Diagnostico diagnostico
 global com.sample.vista.PanelProblemaCarga vistaCarga
@@ -51,5 +50,14 @@ rule "fusibles extremos"
 	then
 		vistaCarga.limpiar();
 		vistaCarga.cambiarFusiblesExtremos();
+		vistaCarga.cambiarSugerencia("Regla de inicio");
+end
+
+rule "adaptador celular"
+	when
+		Problema(estado == TipoEstado.ADAPTADOR_CELULAR)
+	then
+		vistaCarga.limpiar();
+		vistaCarga.adaptadorCelulares();
 		vistaCarga.cambiarSugerencia("Regla de inicio");
 end

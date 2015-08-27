@@ -91,10 +91,11 @@ public class ControladorProblemaCarga implements ActionListener{
 					if(etapa == "estadoConector"){
 						
 						if (panelCarga.radioSi.isSelected()) {
+							mensaje.mostrar();
 							Problema pro = new Problema(TipoEstado.FUSIBLE_CARGA);
 							this.sesion.insert(pro);
 							this.sesion.fireAllRules();
-							carga.setEtapa("extremosFusiles");
+							carga.setEtapa("fusibleCarga");
 						}else if(panelCarga.radioNo.isSelected()){
 							Problema pro = new Problema(TipoEstado.DIAGNOSTICO_CARGA);
 							this.sesion.insert(pro);
@@ -103,35 +104,53 @@ public class ControladorProblemaCarga implements ActionListener{
 							JOptionPane.showMessageDialog(null, "El problema es el conector de la bateria");
 						}
 					}else{
-						if(etapa == "extremosFusiles"){
+						if(etapa == "fusibleCarga"){
 							if (panelCarga.radioSi.isSelected()) {
 								Problema pro = new Problema(TipoEstado.DIAGNOSTICO_CARGA);
 								this.sesion.insert(pro);
 								this.sesion.fireAllRules();
 								bandera = true;
-								JOptionPane.showMessageDialog(null, "El problema esta en los extremos del fusible. Hay que reemplazarlos");
+								JOptionPane.showMessageDialog(null, "El problema es el fusible de carga");
 								
 							}else if(panelCarga.radioNo.isSelected()){
+								mensaje.mostrar();
 								Problema pro = new Problema(TipoEstado.CONTINUIDAD_EXTREMOS);
 								this.sesion.insert(pro);
 								this.sesion.fireAllRules();
 								carga.setEtapa("adaptadorCelular");
 							}
 						}else{
-							if(etapa == "adaptadorCelulares"){
+							if(etapa == "adaptadorCelular"){
 								if (panelCarga.radioSi.isSelected()){
 									Problema pro = new Problema(TipoEstado.DIAGNOSTICO_CARGA);
 									this.sesion.insert(pro);
 									this.sesion.fireAllRules();
 									bandera = true;
-									JOptionPane.showMessageDialog(null, "La bateria del celular esta muerta");
+									JOptionPane.showMessageDialog(null, "El problema son los extremos del fusible");
 									
 								}else if(panelCarga.radioNo.isSelected()){
-									Problema pro = new Problema(TipoEstado.DIAGNOSTICO_CARGA);
+									mensaje.mostrar();
+									Problema pro = new Problema(TipoEstado.ADAPTADOR_CELULAR);
 									this.sesion.insert(pro);
 									this.sesion.fireAllRules();
-									bandera = true;
-									JOptionPane.showMessageDialog(null, "El problema es el adaptador del celular");
+									carga.setEtapa("ultimo");
+								}
+							}else{
+								if(etapa == "ultimo"){
+									if (panelCarga.radioSi.isSelected()){
+										Problema pro = new Problema(TipoEstado.DIAGNOSTICO_CARGA);
+										this.sesion.insert(pro);
+										this.sesion.fireAllRules();
+										bandera = true;
+										JOptionPane.showMessageDialog(null, "La bateria esta muerta");
+										
+									}else if(panelCarga.radioNo.isSelected()){
+										Problema pro = new Problema(TipoEstado.DIAGNOSTICO_CARGA);
+										this.sesion.insert(pro);
+										this.sesion.fireAllRules();
+										bandera = true;
+										JOptionPane.showMessageDialog(null, "El problema es el adaptador del celular");
+									}
 								}
 							}
 						}

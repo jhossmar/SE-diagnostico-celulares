@@ -47,6 +47,11 @@ public class ControladorPrincipal implements ActionListener{
 				System.out.println("Se selecciono problemas con el dysplay");
 			}
 			
+			if(problema == "Problemas de Apagado") {
+				vistaPrincipal.cambiarPanel("Apagado");
+				ControladorProblemaApagado controladorApagado = new ControladorProblemaApagado(drools, vistaPrincipal.panelApagado, vistaPrincipal);
+			}
+			
 		}
 		
 	}

@@ -1,0 +1,47 @@
+package com.sample
+ 
+import com.sample.DroolsTest.Message;
+import com.sample.modelo.Problema;
+import com.sample.modelo.TipoEstado;
+import com.sample.modelo.Diagnostico;
+
+global com.sample.vista.PanelProblemaApagado vista
+ 
+rule "verificar reinicio o apagado"
+	when
+		Problema(estado == TipoEstado.TELEFONO_APAGA_SOLO) or
+		Problema(estado == TipoEstado.SE_REINICIA_AL_LLAMAR)
+	then
+		vista.agregarSugerencia("reemplazar el amplificador de potencia (PA)");
+		insert(new Problema(TipoEstado.AMPLIFICADOR_POTENCIA));
+		
+end
+
+rule "verificar reemplazo de amplificador"
+	when
+		Problema(estado == TipoEstado.AMPLIFICADOR_POTENCIA) and
+		Problema(estado == TipoEstado.REEMPLAZADO_AMPLIFICADOR_P)
+	then
+		
+		vista.cambiarSugerencia("realizar un resoldado del UEM (área lógica)");
+end
+
+rule "verificar si se cuelga en un menu especial"
+	when
+		Problema(estado == TipoEstado.SE_REINICIA) or
+		Problema(estado == TipoEstado.SE_CUELGA_EN_MENU_ESPECIAL)
+	then
+		vista.agregarSugerencia("realizar una actualización del software");
+		insert(new Problema(TipoEstado.SOFTWARE_DESACTUALIZADO));
+		
+end
+
+rule "verificar software actualizado"
+	when
+		Problema(estado == TipoEstado.SOFTWARE_DESACTUALIZADO) and
+		Problema(estado == TipoEstado.SOFTWARE_ESTA_ACTUALIZADO)
+	then
+		
+		vista.cambiarSugerencia("realizar un resoldado del área lógica del celular (UPP-UEM).");
+end
+

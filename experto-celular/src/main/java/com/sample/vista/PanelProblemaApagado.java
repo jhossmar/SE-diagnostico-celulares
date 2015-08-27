@@ -1,35 +1,29 @@
 package com.sample.vista;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
-import sun.security.krb5.internal.PAEncTSEnc;
+import com.sample.controlador.ControladorProblemaApagado;
 
-public class PanelProblemaAudio extends JPanel {
+public class PanelProblemaApagado extends JPanel{
 	
-	public JDialog dlg;
+	
+public JDialog dlg;
 	
 	JPanel panelPregunta;
 	JPanel panelAceptar;
@@ -39,14 +33,11 @@ public class PanelProblemaAudio extends JPanel {
 	
 	public JLabel labelSugerencia;
 	
-	public JRadioButton radioSi;
-	public JRadioButton radioNo;
-	
 	public JButton botonAceptar;
 	
 	public JComboBox comboProblemas;
 	
-	public PanelProblemaAudio() {
+	public PanelProblemaApagado() {
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(new Dimension(430, 440));
 		//this.setBackground(Color.BLUE);
@@ -54,15 +45,8 @@ public class PanelProblemaAudio extends JPanel {
 		
 		panelPregunta = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		labelpregunta = new JLabel("Se pueden Realizar Llamadas??");
-		ButtonGroup grupo = new ButtonGroup();
-		radioSi = new JRadioButton("SI");
-		radioNo = new JRadioButton("NO");
-		grupo.add(radioSi);
-		grupo.add(radioNo);
 		
 		panelPregunta.add(labelpregunta);
-		panelPregunta.add(radioSi);
-		panelPregunta.add(radioNo);
 		
 		this.add(panelPregunta, BorderLayout.NORTH);
 		
@@ -79,9 +63,10 @@ public class PanelProblemaAudio extends JPanel {
 		
 		panelSugerencia.add(titulo);
 		
-		
 		this.add(panelSugerencia, BorderLayout.CENTER);
 		this.add(botonAceptar, BorderLayout.SOUTH);
+		
+		this.cambiarElementos();
 	}
 	
 	public void mostrarSugerencia(String texto) {
@@ -96,18 +81,19 @@ public class PanelProblemaAudio extends JPanel {
 		actualizarInterfaz();
 	}
 	
+	public void actualizarInterfaz() {
+		SwingUtilities.updateComponentTreeUI(panelSugerencia);
+		panelSugerencia.updateUI();
+	}
+	
 	public void cambiarSugerencia(String texto) {
+		//this.labelSugerencia.setText(texto);
 		this.mostrarSugerencia(texto);
 		this.agregarSugerencia(texto);
 	}
 	
 	public void agregarEventoAceptar(ActionListener action) {
 		this.botonAceptar.addActionListener(action);
-	}
-	
-	public void actualizarInterfaz() {
-		SwingUtilities.updateComponentTreeUI(panelSugerencia);
-		panelSugerencia.updateUI();
 	}
 	
 	public void cambiarElementos(){
@@ -121,17 +107,21 @@ public class PanelProblemaAudio extends JPanel {
 	
 	public JPanel crearPanel() {
 		JPanel panel = new JPanel(new FlowLayout());
-		JLabel pregunta = new JLabel("Inserte Hechos: ");
+		JLabel pregunta = new JLabel("Inserte Informacion: ");
 		panel.add(pregunta);
 		
 		this.comboProblemas = new JComboBox();
-		String[] problemas = new String[]{"No escuchamos nada","Nos escuchan",
-				"Los componentes pasivos en buen estado", "No nos escuchan",
-				"No se escucha con audifonos", "Conectores Limpios","Escuchamos durante llamadas"};
+		String[] problemas = new String[]{"El telefono se apaga solo",
+				"Se Reinicia al realizar una llamada",
+				"El Amplificador de Potencia esta Reemplazado", 
+				"Se cuelga cuando se entra en un menu especial",
+				"Se Reinicia solo", "El software esta actualizado"};
 		
 		this.comboProblemas.setModel(new DefaultComboBoxModel(problemas));
 		panel.add(comboProblemas);
 		
 		return panel;
 	}
+	
+	
 }

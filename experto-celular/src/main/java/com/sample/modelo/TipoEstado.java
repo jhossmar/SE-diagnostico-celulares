@@ -36,7 +36,29 @@ public class TipoEstado {
 	
 	public final static int CONTINUIDAD_EXTREMOS = 20;
 	
-	public final static int SE_APAGA_Y_ENCIENDE=21;
+
+	public final static int ADAPTADOR_CELULAR = 21;
+	
+	/**
+	 * Problemas de Apagado
+	 */
+	public final static int TELEFONO_APAGA_SOLO = 50;
+	
+	public final static int SE_REINICIA_AL_LLAMAR = 51;
+	
+	public final static int AMPLIFICADOR_POTENCIA = 52;
+	
+	public final static int REEMPLAZADO_AMPLIFICADOR_P = 53;
+	
+	public final static int  SE_CUELGA_EN_MENU_ESPECIAL= 54;
+	
+	public final static int SE_REINICIA = 55;
+	
+	public final static int SOFTWARE_DESACTUALIZADO = 56;
+	
+	public final static int SOFTWARE_ESTA_ACTUALIZADO = 57;
+	
+public final static int SE_APAGA_Y_ENCIENDE=21;
 	
 	public final static int ES_TIPO_CON_TAPA=22;
 	
@@ -47,6 +69,7 @@ public class TipoEstado {
 	public final static int FLEX_SUSIO=25;
 	
 	public final static int COMPONENTES_PASIVOS_RESOLDADOS=26;
+
 	
 	
 	
