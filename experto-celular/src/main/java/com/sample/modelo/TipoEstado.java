@@ -24,7 +24,7 @@ public class TipoEstado {
 	
 	public final static int ESCUCHAMOS = 14;
 	
-public final static int RECARGA_BATERIA = 15;
+    public final static int RECARGA_BATERIA = 15;
 	
 	public final static int NO_RECARGA_BATERIA = 16;
 	
@@ -35,5 +35,19 @@ public final static int RECARGA_BATERIA = 15;
 	public final static int NO_FUSIBLE_CARGA = 19;
 	
 	public final static int CONTINUIDAD_EXTREMOS = 20;
+	
+	public final static int SE_APAGA_Y_ENCIENDE=21;
+	
+	public final static int ES_TIPO_CON_TAPA=22;
+	
+	public final static int ES_TIPO_DESLIZANTE=23;
+	
+	public final static int FLEX_LIMPIO=24;
+	
+	public final static int FLEX_SUSIO=25;
+	
+	public final static int COMPONENTES_PASIVOS_RESOLDADOS=26;
+	
+	
 	
 }

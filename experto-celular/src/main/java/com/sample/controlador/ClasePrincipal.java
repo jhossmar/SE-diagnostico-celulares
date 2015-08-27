@@ -24,7 +24,9 @@ public class ClasePrincipal {
 			//UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
+			System.out.println("HERE!!!!!");
 			e.printStackTrace();
+			
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,6 +35,7 @@ public class ClasePrincipal {
 			e.printStackTrace();
 		} catch (UnsupportedLookAndFeelException e) {
 			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

@@ -37,6 +37,7 @@ public class VistaPrincipal extends JFrame {
 	
 	public PanelProblemaAudio panelAudio;
 	public PanelProblemaCarga panelCarga;
+	public PanelProblemaDisplay panelDisplay;
 
 	public VistaPrincipal() {
 		this.configurarVista();
@@ -80,6 +81,9 @@ public class VistaPrincipal extends JFrame {
 		
 		panelCarga = new PanelProblemaCarga();
 		panelParaCambiar.add(panelCarga, "Carga");
+		
+		panelDisplay= new PanelProblemaDisplay();
+		panelParaCambiar.add(panelDisplay,"Display");
 		
 		contentPane.add(panelParaCambiar);
 	}
@@ -133,7 +137,7 @@ public class VistaPrincipal extends JFrame {
 		mntmDocumento.setFont(new Font("Tahoma", 0, 20));
 		mnAbout.add(mntmDocumento);
 	}
-
+							
 	public void agregarImagen() {
 		JLabel lblNewLabel = new JLabel("Diagnostico para Celulares");
 		lblNewLabel.setBounds(22, 0, 367, 42);
