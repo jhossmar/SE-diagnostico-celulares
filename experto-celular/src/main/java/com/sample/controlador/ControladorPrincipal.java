@@ -42,6 +42,11 @@ public class ControladorPrincipal implements ActionListener{
 				ControladorProblemaCarga controladorCarga = new ControladorProblemaCarga(drools, vistaPrincipal.panelCarga, vistaPrincipal);
 			}
 			
+			if(problema == "Problemas de Apagado") {
+				vistaPrincipal.cambiarPanel("Apagado");
+				ControladorProblemaApagado controladorApagado = new ControladorProblemaApagado(drools, vistaPrincipal.panelApagado, vistaPrincipal);
+			}
+			
 		}
 		
 	}
