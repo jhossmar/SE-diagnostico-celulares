@@ -1,7 +1,7 @@
  package com.sample.modelo;
 
 public class Problema {
-	private int estado;
+	public int estado;
 	
 	
 	public Problema(int estado) {

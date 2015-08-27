@@ -43,7 +43,7 @@ public class ControladorPrincipal implements ActionListener{
 			}
 			if(problema == "Problema con el Display"){
 			   vistaPrincipal.cambiarPanel("Display");
-			   
+			   ControladorProbremaDisplay controladorCarga = new ControladorProbremaDisplay(drools, vistaPrincipal.panelDisplay, vistaPrincipal);
 				System.out.println("Se selecciono problemas con el dysplay");
 			}
 			

@@ -23,7 +23,7 @@ import com.sample.controlador.ControladorProblemaApagado;
 public class PanelProblemaApagado extends JPanel{
 	
 	
-public JDialog dlg;
+    public JDialog dlg;
 	
 	JPanel panelPregunta;
 	JPanel panelAceptar;

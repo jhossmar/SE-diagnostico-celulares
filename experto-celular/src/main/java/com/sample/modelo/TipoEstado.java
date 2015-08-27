@@ -58,17 +58,18 @@ public class TipoEstado {
 	
 	public final static int SOFTWARE_ESTA_ACTUALIZADO = 57;
 	
-public final static int SE_APAGA_Y_ENCIENDE=21;
+	/**
+	 * Problemas de Display
+	 */
+    public final static int SE_APAGA_Y_ENCIENDE=21;
 	
 	public final static int ES_TIPO_CON_TAPA=22;
 	
 	public final static int ES_TIPO_DESLIZANTE=23;
 	
-	public final static int FLEX_LIMPIO=24;
+	public final static int CONECTOR_ENTRE_PLACAS_LIMPIO=24;
 	
-	public final static int FLEX_SUSIO=25;
-	
-	public final static int COMPONENTES_PASIVOS_RESOLDADOS=26;
+    public final static int COMPONENTES_PASIVOS_RESOLDADOS=26;
 
 	
 	
