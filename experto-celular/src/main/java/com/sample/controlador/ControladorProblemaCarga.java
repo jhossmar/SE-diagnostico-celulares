@@ -60,6 +60,7 @@ public class ControladorProblemaCarga implements ActionListener{
 					
 					bandera = false;
 					carga.setEtapa("duracion");
+					panelCarga.agregarSugerencia("El celula puede recargar la bateria");
 				}else if(panelCarga.radioNo.isSelected()){
 					mensaje.mostrar();
 
@@ -69,6 +70,9 @@ public class ControladorProblemaCarga implements ActionListener{
 					
 					bandera = false;
 					carga.setEtapa("estadoConector");
+					panelCarga.agregarSugerencia("El celula no puede recargar la bateria");
+				}else{
+					JOptionPane.showMessageDialog(null, "Seleccione alguna opcion");
 				}
 			}else{
 				String etapa = carga.getEtapa();
@@ -79,13 +83,19 @@ public class ControladorProblemaCarga implements ActionListener{
 						this.sesion.insert(pro);
 						this.sesion.fireAllRules();
 						bandera = true;
+						panelCarga.agregarSugerencia("La bateria dura poco tiempo");
+						panelCarga.agregarSugerencia("Muchas aplicaciones abiertas");
 						JOptionPane.showMessageDialog(null, "El problema de carga son las aplicaciones que esten abiertas");
 					}else if(panelCarga.radioNo.isSelected()){
 						Problema pro = new Problema(TipoEstado.DIAGNOSTICO_CARGA);
 						this.sesion.insert(pro);
 						this.sesion.fireAllRules();
 						bandera = true;
+						panelCarga.agregarSugerencia("La bateria dura lo normal");
+						panelCarga.agregarSugerencia("No se encuentra problemas de carga");
 						JOptionPane.showMessageDialog(null, "No hay problema de carga");	
+					}else{
+						JOptionPane.showMessageDialog(null, "Seleccione alguna opcion");
 					}
 				}else{
 					if(etapa == "estadoConector"){
@@ -96,12 +106,17 @@ public class ControladorProblemaCarga implements ActionListener{
 							this.sesion.insert(pro);
 							this.sesion.fireAllRules();
 							carga.setEtapa("fusibleCarga");
+							panelCarga.agregarSugerencia("El conector de la bateria esta en buen estado");
 						}else if(panelCarga.radioNo.isSelected()){
 							Problema pro = new Problema(TipoEstado.DIAGNOSTICO_CARGA);
 							this.sesion.insert(pro);
 							this.sesion.fireAllRules();
 							bandera = true;
+							panelCarga.agregarSugerencia("El conector de la bateria no esta en buen estado");
+							panelCarga.agregarSugerencia("El problema es el conector de la bateria");
 							JOptionPane.showMessageDialog(null, "El problema es el conector de la bateria");
+						}else{
+							JOptionPane.showMessageDialog(null, "Seleccione alguna opcion");
 						}
 					}else{
 						if(etapa == "fusibleCarga"){
@@ -110,6 +125,8 @@ public class ControladorProblemaCarga implements ActionListener{
 								this.sesion.insert(pro);
 								this.sesion.fireAllRules();
 								bandera = true;
+								panelCarga.agregarSugerencia("El fusible de la carga esta dañado");
+								panelCarga.agregarSugerencia("El problema es el fusible de carga");
 								JOptionPane.showMessageDialog(null, "El problema es el fusible de carga");
 								
 							}else if(panelCarga.radioNo.isSelected()){
@@ -118,6 +135,9 @@ public class ControladorProblemaCarga implements ActionListener{
 								this.sesion.insert(pro);
 								this.sesion.fireAllRules();
 								carga.setEtapa("adaptadorCelular");
+								panelCarga.agregarSugerencia("El fusible de la carga no esta dañado");
+							}else{
+								JOptionPane.showMessageDialog(null, "Seleccione alguna opcion");
 							}
 						}else{
 							if(etapa == "adaptadorCelular"){
@@ -126,6 +146,8 @@ public class ControladorProblemaCarga implements ActionListener{
 									this.sesion.insert(pro);
 									this.sesion.fireAllRules();
 									bandera = true;
+									panelCarga.agregarSugerencia("Los extremos del fusible no funcionan");
+									panelCarga.agregarSugerencia("El problema son los extremos del fusible");
 									JOptionPane.showMessageDialog(null, "El problema son los extremos del fusible");
 									
 								}else if(panelCarga.radioNo.isSelected()){
@@ -134,6 +156,9 @@ public class ControladorProblemaCarga implements ActionListener{
 									this.sesion.insert(pro);
 									this.sesion.fireAllRules();
 									carga.setEtapa("ultimo");
+									panelCarga.agregarSugerencia("Los extremos del fusible si funcionan");
+								}else{
+									JOptionPane.showMessageDialog(null, "Seleccione alguna opcion");
 								}
 							}else{
 								if(etapa == "ultimo"){
@@ -142,6 +167,8 @@ public class ControladorProblemaCarga implements ActionListener{
 										this.sesion.insert(pro);
 										this.sesion.fireAllRules();
 										bandera = true;
+										panelCarga.agregarSugerencia("El adaptador del celular esta en buen estado");
+										panelCarga.agregarSugerencia("La bateria esta muerta");
 										JOptionPane.showMessageDialog(null, "La bateria esta muerta");
 										
 									}else if(panelCarga.radioNo.isSelected()){
@@ -149,7 +176,11 @@ public class ControladorProblemaCarga implements ActionListener{
 										this.sesion.insert(pro);
 										this.sesion.fireAllRules();
 										bandera = true;
+										panelCarga.agregarSugerencia("El adaptador del celular no esta en buen estado");
+										panelCarga.agregarSugerencia("El problema es el adaptador del celular");
 										JOptionPane.showMessageDialog(null, "El problema es el adaptador del celular");
+									}else{
+										JOptionPane.showMessageDialog(null, "Seleccione alguna opcion");
 									}
 								}
 							}

@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import javax.swing.BoxLayout;
 
 import sun.security.krb5.internal.PAEncTSEnc;
 
@@ -70,28 +71,41 @@ public JDialog dlg;
 		botonAceptar = new JButton("Aceptar");
 		panelAceptar.add(botonAceptar);
 		
-		JLabel titulo = new JLabel("Sugerencias");
+		JLabel titulo = new JLabel("Hechos");
 		
-		panelSugerencia = new JPanel(new BorderLayout());
-		labelSugerencia = new JLabel("");
-		panelSugerencia.add(titulo, BorderLayout.NORTH);
-		panelSugerencia.add(labelSugerencia, BorderLayout.CENTER);
+		panelSugerencia = new JPanel();
+		panelSugerencia.setLayout(new BoxLayout(panelSugerencia, BoxLayout.Y_AXIS));
+		
+		panelSugerencia.add(titulo);
 		
 		this.add(panelSugerencia, BorderLayout.CENTER);
 		this.add(botonAceptar, BorderLayout.SOUTH);
 	}
 	
-	public void mostrarSugerencia() {
+	public void mostrarSugerencia(String texto) {
 		
-		JOptionPane.showMessageDialog(null, labelSugerencia.getText(), "Sugerencia", 1);
+		JOptionPane.showMessageDialog(null, texto, "Sugerencia", 1);
+	}
+	
+	public void agregarSugerencia(String texto) {
+		JLabel nuevo = new JLabel(texto);
+		this.panelSugerencia.add(nuevo);
+		
+		actualizarInterfaz();
 	}
 	
 	public void cambiarSugerencia(String texto) {
-		this.labelSugerencia.setText(texto);
+		this.mostrarSugerencia(texto);
+		this.agregarSugerencia(texto);
 	}
 	
 	public void agregarEventoAceptar(ActionListener action) {
 		this.botonAceptar.addActionListener(action);
+	}
+	
+	public void actualizarInterfaz() {
+		SwingUtilities.updateComponentTreeUI(panelSugerencia);
+		panelSugerencia.updateUI();
 	}
 	
 	public void limpiar(){
