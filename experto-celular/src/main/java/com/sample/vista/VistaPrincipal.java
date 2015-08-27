@@ -17,6 +17,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -135,6 +136,11 @@ public class VistaPrincipal extends JFrame {
 		menuBar.add(mnArchivo);
 
 		JMenuItem mntmCerrar = new JMenuItem("Cerrar");
+		mntmCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		mntmCerrar.setFont(new Font("Tahoma", 0, 20));
 		mnArchivo.add(mntmCerrar);
 
@@ -142,7 +148,14 @@ public class VistaPrincipal extends JFrame {
 		mnAbout.setFont(new Font("Tahoma", 0, 20));
 		menuBar.add(mnAbout);
 
-		JMenuItem mntmDocumento = new JMenuItem("Documento");
+		JMenuItem mntmDocumento = new JMenuItem("Ayuda");
+		mntmDocumento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    mostrarManual();
+			}
+
+			
+		});
 		mntmDocumento.setFont(new Font("Tahoma", 0, 20));
 		mnAbout.add(mntmDocumento);
 	}
@@ -174,5 +187,10 @@ public class VistaPrincipal extends JFrame {
 
 	public void iniciar() {
 		this.setVisible(true);
+	}
+	
+	private void mostrarManual() {
+      JDialog vistaManual= new ManualDeUsuario(this);
+		vistaManual.setVisible(true);
 	}
 }
