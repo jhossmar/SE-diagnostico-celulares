@@ -37,7 +37,7 @@ public class ControladorProblemaAudio implements ActionListener{
 
 		this.panelAudio = panelAudio;
 
-		this.sesion.setGlobal("vista", this.panelAudio);
+		this.sesion.setGlobal("vistaaudio", this.panelAudio);
 
 		this.panelAudio.agregarEventoAceptar(this);
 

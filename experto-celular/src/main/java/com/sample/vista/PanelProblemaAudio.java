@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -73,26 +74,40 @@ public class PanelProblemaAudio extends JPanel {
 		
 		JLabel titulo = new JLabel("Sugerencias");
 		
-		panelSugerencia = new JPanel(new BorderLayout());
-		labelSugerencia = new JLabel("");
-		panelSugerencia.add(titulo, BorderLayout.NORTH);
-		panelSugerencia.add(labelSugerencia, BorderLayout.CENTER);
+		panelSugerencia = new JPanel();
+		panelSugerencia.setLayout(new BoxLayout(panelSugerencia, BoxLayout.Y_AXIS));
+		
+		panelSugerencia.add(titulo);
+		
 		
 		this.add(panelSugerencia, BorderLayout.CENTER);
 		this.add(botonAceptar, BorderLayout.SOUTH);
 	}
 	
-	public void mostrarSugerencia() {
+	public void mostrarSugerencia(String texto) {
 		
-		JOptionPane.showMessageDialog(null, labelSugerencia.getText(), "Sugerencia", 1);
+		JOptionPane.showMessageDialog(null, texto, "Sugerencia", 1);
+	}
+	
+	public void agregarSugerencia(String texto) {
+		JLabel nuevo = new JLabel(texto);
+		this.panelSugerencia.add(nuevo);
+		
+		actualizarInterfaz();
 	}
 	
 	public void cambiarSugerencia(String texto) {
-		this.labelSugerencia.setText(texto);
+		this.mostrarSugerencia(texto);
+		this.agregarSugerencia(texto);
 	}
 	
 	public void agregarEventoAceptar(ActionListener action) {
 		this.botonAceptar.addActionListener(action);
+	}
+	
+	public void actualizarInterfaz() {
+		SwingUtilities.updateComponentTreeUI(panelSugerencia);
+		panelSugerencia.updateUI();
 	}
 	
 	public void cambiarElementos(){

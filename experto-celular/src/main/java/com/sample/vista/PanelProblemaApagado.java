@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -57,10 +58,10 @@ public JDialog dlg;
 		
 		JLabel titulo = new JLabel("Sugerencias");
 		
-		panelSugerencia = new JPanel(new BorderLayout());
-		labelSugerencia = new JLabel("");
-		panelSugerencia.add(titulo, BorderLayout.NORTH);
-		panelSugerencia.add(labelSugerencia, BorderLayout.CENTER);
+		panelSugerencia = new JPanel();
+		panelSugerencia.setLayout(new BoxLayout(panelSugerencia, BoxLayout.Y_AXIS));
+		
+		panelSugerencia.add(titulo);
 		
 		this.add(panelSugerencia, BorderLayout.CENTER);
 		this.add(botonAceptar, BorderLayout.SOUTH);
@@ -68,13 +69,27 @@ public JDialog dlg;
 		this.cambiarElementos();
 	}
 	
-	public void mostrarSugerencia() {
+	public void mostrarSugerencia(String texto) {
 		
-		JOptionPane.showMessageDialog(null, labelSugerencia.getText(), "Sugerencia", 1);
+		JOptionPane.showMessageDialog(null, texto, "Sugerencia", 1);
+	}
+	
+	public void agregarSugerencia(String texto) {
+		JLabel nuevo = new JLabel(texto);
+		this.panelSugerencia.add(nuevo);
+		
+		actualizarInterfaz();
+	}
+	
+	public void actualizarInterfaz() {
+		SwingUtilities.updateComponentTreeUI(panelSugerencia);
+		panelSugerencia.updateUI();
 	}
 	
 	public void cambiarSugerencia(String texto) {
-		this.labelSugerencia.setText(texto);
+		//this.labelSugerencia.setText(texto);
+		this.mostrarSugerencia(texto);
+		this.agregarSugerencia(texto);
 	}
 	
 	public void agregarEventoAceptar(ActionListener action) {

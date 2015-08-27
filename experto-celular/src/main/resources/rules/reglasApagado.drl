@@ -12,10 +12,9 @@ rule "verificar reinicio o apagado"
 		Problema(estado == TipoEstado.TELEFONO_APAGA_SOLO) or
 		Problema(estado == TipoEstado.SE_REINICIA_AL_LLAMAR)
 	then
+		vista.agregarSugerencia("reemplazar el amplificador de potencia (PA)");
 		insert(new Problema(TipoEstado.AMPLIFICADOR_POTENCIA));
 		
-		vista.cambiarSugerencia("reemplazar el amplificador de potencia (PA)");
-		vista.mostrarSugerencia();
 end
 
 rule "verificar reemplazo de amplificador"
@@ -25,7 +24,6 @@ rule "verificar reemplazo de amplificador"
 	then
 		
 		vista.cambiarSugerencia("realizar un resoldado del UEM (área lógica)");
-		vista.mostrarSugerencia();
 end
 
 rule "verificar si se cuelga en un menu especial"
@@ -33,9 +31,9 @@ rule "verificar si se cuelga en un menu especial"
 		Problema(estado == TipoEstado.SE_REINICIA) or
 		Problema(estado == TipoEstado.SE_CUELGA_EN_MENU_ESPECIAL)
 	then
+		vista.agregarSugerencia("realizar una actualización del software");
 		insert(new Problema(TipoEstado.SOFTWARE_DESACTUALIZADO));
-		vista.cambiarSugerencia("realizar una actualización del software");
-		vista.mostrarSugerencia();
+		
 end
 
 rule "verificar software actualizado"
@@ -45,6 +43,5 @@ rule "verificar software actualizado"
 	then
 		
 		vista.cambiarSugerencia("realizar un resoldado del área lógica del celular (UPP-UEM).");
-		vista.mostrarSugerencia();
 end
 
